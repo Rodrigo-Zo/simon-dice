@@ -4,14 +4,14 @@ body{
 
 #panel-usuario{
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     color: yellow;
     margin-bottom: 20px;
 }
 
 #boton-empezar{
     background-color: yellow;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 12px;
 }
 
@@ -33,4 +33,8 @@ body{
 
 #color-4{
     background-color: blue;
+}
+
+.oculto{
+    display: none;
 }
