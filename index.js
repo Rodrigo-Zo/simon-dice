@@ -7,6 +7,7 @@ function desocultarElemento(elemento){
 
 function perder(){
     ronda = 0;
+    patronColoresMaquina = '';
     desocultarElemento($botonEmpezar);
     actualizarTextoTurno('Has perdido, toca empezar para volver a jugar');
 }
@@ -22,7 +23,6 @@ function hacerTurnoMaquina(){
     actualizarNumeroRonda(ronda);
     actualizarTextoTurno('Es el turno de la máquina');
     elegirColorRandom();
-    //PINTAR COLORES DE TODO EL  ARRAY
 }
 
 function actualizarNumeroRonda(ronda){
@@ -41,35 +41,23 @@ function elegirColorRandom(){
 }
 
 function hacerTurnoUsuario(){
-    actualizarTextoTurno('Te toca');//DEBERÍA HABER UN TIMER!!!
+    actualizarTextoTurno('Te toca');
     $colores.forEach(function($color){
         $color.onclick = elegirColorUsuario;
     });
+
 }
 
 function elegirColorUsuario(evento){
     let $colorUsuario = evento.target;
     coloresUsuario.push($colorUsuario);
-}
-
-
-let coloresUsuario = [];
-let coloresMaquina = [];
-let ronda = 0;
-
-let $colores = document.querySelectorAll('.color');
-let $botonEmpezar = document.querySelector('#boton-empezar');
-
-$botonEmpezar.onclick = function(){
-    iniciarJuego();
-    hacerTurnoMaquina();
-    hacerTurnoUsuario(); 
-    compararColores();
-
+    
+    if(coloresMaquina.length === coloresUsuario.length){
+        compararColores();
+    }
 }
 
 function compararColores(){
-    let patronColoresMaquina = '';
     let patronColoresUsuario = '';
 
     coloresMaquina.forEach(function(color){
@@ -82,10 +70,26 @@ function compararColores(){
 
     if(patronColoresMaquina === patronColoresUsuario){
         ronda++;
+        coloresUsuario = [];
+        patronColoresUsuario = '';
+        patronColoresMaquina = '';
         hacerTurnoMaquina();
+        hacerTurnoUsuario();
     }else{
         perder();
     }
 }
 
+let coloresUsuario = [];
+let coloresMaquina = [];
+let patronColoresMaquina = '';
+let ronda = 0;
 
+let $colores = document.querySelectorAll('.color');
+let $botonEmpezar = document.querySelector('#boton-empezar');
+
+$botonEmpezar.onclick = function(){
+    iniciarJuego();
+    hacerTurnoMaquina();
+    hacerTurnoUsuario();
+}
