@@ -11,10 +11,10 @@ xcolorRandom se agregara a coloresMaquina[];
 xSe pintaran los coloresMaquina en orden: Nº1: El 1º seg, Nº2: El 2º segundo...
 
 turnoUsuario:
-En 1 segundo se actualizará el turno a "Te toca".
-usuario elegira un colorRandomUsuario
-colorRandomUsuario se pintará
-colorRandomUsuario se agregara a coloresUsuario[];
+xEn 1 segundo se actualizará el turno a "Te toca".
+xusuario elegira un colorUsuario
+xcolorUsuario se pintará
+xcolorUsuario se agregara a coloresUsuario[];
 forEach coloresMaquina (color, indice) se verificará si color es igual a coloresUsuario[indice].
 IF es diferente, perder.
 if es igual: ronda++ , coloresUsuario = [], 
@@ -38,7 +38,6 @@ function comenzarJuego(){
 }
 
 function obtenerColorRandom(){
-    $colores = document.querySelectorAll('.color');
     $colorRandom = $colores[Math.floor(Math.random() * $colores.length)];
     coloresMaquina.push($colorRandom);
 }
@@ -66,6 +65,37 @@ function hacerTurnoMaquina(){
 
 }
 
+function hacerTurnoJugador(){
+    setTimeout(function(){
+        actualizarTurno('Te toca');
+    },(coloresMaquina.length + 1) * 1250);
+
+    elegirColorUsuario();
+
+}
+
+function elegirColorUsuario(){
+    $colores.forEach(function($color){
+        $color.onclick = elegirColor;
+
+    });
+}
+
+function elegirColor(e){
+    let $colorElegido = e.target;
+    coloresUsuario.push($colorElegido);
+    pintarColor($colorElegido)
+}
+
+function pintarColor($color){
+    $color.style.opacity = 1;
+    setTimeout(function(){;
+        $color.style.opacity = 0.3;
+    }, 1000);
+}
+
+
+
 
 
 
@@ -73,13 +103,14 @@ function hacerTurnoMaquina(){
 let ronda = 0;
 let coloresMaquina = [];
 let coloresUsuario = [];
+$colores = document.querySelectorAll('.color');
 $botonEmpezar = document.querySelector('#boton-empezar');
 
 $botonEmpezar.onclick = function(){
     comenzarJuego();
     hacerTurnoMaquina();
+    hacerTurnoJugador();
 }
-
 
 
 
