@@ -1,42 +1,91 @@
 function ocultarElemento(elemento){
     elemento.className = 'oculto';
 }
-
 function desocultarElemento(elemento){
     elemento.className = '';
 }
 
-function actualizarTextoRonda(numeroDeRonda){
-    $rondaDisplay = document.querySelector('#ronda');
-    $rondaDisplay.textContent = numeroDeRonda;
+function perder(){
+    ronda = 0;
+    desocultarElemento($botonEmpezar);
+    actualizarTextoTurno('Has perdido, toca empezar para volver a jugar');
 }
 
-function actualizarTextoTurno(turno){
-    $turnoDisplay = document.querySelector('#turno');
-    $turnoDisplay.textContent = turno;
+function iniciarJuego(){
+    ocultarElemento($botonEmpezar);
+    ronda++;
+    coloresMaquina = [];
+    coloresUsuario = [];
+}
+
+function hacerTurnoMaquina(){
+    actualizarNumeroRonda(ronda);
+    actualizarTextoTurno('Es el turno de la máquina');
+    elegirColorRandom();
+    //PINTAR COLORES DE TODO EL  ARRAY
+}
+
+function actualizarNumeroRonda(ronda){
+    let $displayRonda = document.querySelector('#ronda');
+    $displayRonda.textContent = ronda;
+}
+
+function actualizarTextoTurno(textoTurno){
+    let $displayTurno = document.querySelector('#turno');
+    $displayTurno.textContent = textoTurno;
 }
 
 function elegirColorRandom(){
-    let $colores = document.querySelectorAll('.color');
-    let numeroRandom = Math.floor(Math.random() * 4);
-    coloresMaquina.push($colores[numeroRandom]);
+    let numeroAleatorio = Math.floor(Math.random() * $colores.length);
+    coloresMaquina.push($colores[numeroAleatorio]);
 }
 
-function turnoMaquina(){
-    actualizarTextoRonda(ronda);
-    actualizarTextoTurno('Es el turno de la maquina');
-    elegirColorRandom();
+function hacerTurnoUsuario(){
+    actualizarTextoTurno('Te toca');//DEBERÍA HABER UN TIMER!!!
+    $colores.forEach(function($color){
+        $color.onclick = elegirColorUsuario;
+    });
+}
+
+function elegirColorUsuario(evento){
+    let $colorUsuario = evento.target;
+    coloresUsuario.push($colorUsuario);
 }
 
 
-
-
-$botonEmpezar = document.querySelector('button[type=button]');
-let ronda = 1;
-let coloresMaquina = [];
 let coloresUsuario = [];
+let coloresMaquina = [];
+let ronda = 0;
 
+let $colores = document.querySelectorAll('.color');
+let $botonEmpezar = document.querySelector('#boton-empezar');
 
 $botonEmpezar.onclick = function(){
-    ocultarElemento($botonEmpezar);
-    turnoMaquina();
+    iniciarJuego();
+    hacerTurnoMaquina();
+    hacerTurnoUsuario(); 
+    compararColores();
+
+}
+
+function compararColores(){
+    let patronColoresMaquina = '';
+    let patronColoresUsuario = '';
+
+    coloresMaquina.forEach(function(color){
+        patronColoresMaquina += color.id;
+    });
+
+    coloresUsuario.forEach(function(color){
+        patronColoresUsuario += color.id;
+    });
+
+    if(patronColoresMaquina === patronColoresUsuario){
+        ronda++;
+        hacerTurnoMaquina();
+    }else{
+        perder();
+    }
+}
+
+
