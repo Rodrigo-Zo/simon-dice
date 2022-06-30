@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
 }
 
 #panel-usuario{
@@ -17,6 +17,7 @@ body{
 
 .color{
     min-height: 100px;
+    opacity: 0.3;
 }
 
 #color-1{
