@@ -34,8 +34,7 @@ function desocultarElemento(elemento){
 }
 
 function comenzarJuego(){
-    ocultarElemento($botonEmpezar);
-    hacerTurnoMaquina(); //debería estar fuera de comenzarjuego, no cuenta una historia.
+    ocultarElemento($botonEmpezar);   
 }
 
 function obtenerColorRandom(){
@@ -54,10 +53,6 @@ function pintarColoresMaquina(){
 
     });
 }
-
-
-
-
 
 function hacerTurnoMaquina(){
     ronda++;
@@ -82,8 +77,8 @@ $botonEmpezar = document.querySelector('#boton-empezar');
 
 $botonEmpezar.onclick = function(){
     comenzarJuego();
+    hacerTurnoMaquina();
 }
-
 
 
 
