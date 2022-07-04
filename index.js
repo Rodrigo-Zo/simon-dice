@@ -54,12 +54,11 @@ function pintarColoresMaquina(){
     });
 }
 
-function hacerTurnoMaquina(){
-    ronda ++;
-    actualizarRondaDisplay(ronda);
-    actualizarTurnoDisplay('Turno de la máquina');
-    obtenerColorRandom();
-    pintarColoresMaquina();
+
+
+function hacerTurnoUsuario(){
+actualizarTurnoDisplay('Te Toca');
+elegirColorUsuario();
 }
 
 function elegirColorUsuario(){
