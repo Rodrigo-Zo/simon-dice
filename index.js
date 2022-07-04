@@ -65,13 +65,12 @@ function elegirColor(e){
     let $colorUsuario = e.target;
     pintarColor($colorUsuario);
 
-    if($colorUsuario.id !== coloresMaquina[indice].id){
-        console.log('perdiste');
-    }
-
-    if($colorUsuario.id === coloresMaquina[indice].id){
-        indice ++;
-        coloresUsuario.push($colorUsuario);
+    if($colorUsuario.id !== coloresMaquina[coloresUsuario.length - 1].id){
+        actualizarTurnoDisplay('Perdiste! toca empezar para jugar nuevamente');
+        ronda = 0;
+        coloresMaquina = [];
+        coloresUsuario = [];
+        desocultarElemento($botonEmpezar);
     }
 
     if(coloresUsuario.length === coloresMaquina.length){
