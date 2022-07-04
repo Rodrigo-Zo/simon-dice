@@ -46,13 +46,11 @@ function obtenerColorRandom(){
 }
 
 function pintarColoresMaquina(){
-    coloresMaquina.forEach(function($color, index){
-        let retraso = (index + 1) * 750;
+    coloresMaquina.forEach(function(color, index){
         
         setTimeout(function(){
-            pintarColor($color);
-        }, retraso);
-
+            pintarColor(color);
+        }, (index + 1) * 1000);
     });
 }
 
