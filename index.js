@@ -26,6 +26,17 @@ function pintarColor($color){
 
 
 
+function hacerTurnoMaquina(){
+    ronda ++;
+    actualizarRondaDisplay(ronda);
+    actualizarTurnoDisplay('Turno de la máquina');
+    obtenerColorRandom();
+    pintarColoresMaquina();
+
+    setTimeout(function(){
+        hacerTurnoUsuario();
+    },(coloresMaquina.length + 1) * 1000);
+
 }
 
 function obtenerColorRandom(){
