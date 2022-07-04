@@ -73,7 +73,7 @@ function elegirColor(e){
         desocultarElemento($botonEmpezar);
     }
 
-    if(coloresUsuario.length === coloresMaquina.length){
+    else if(coloresUsuario.length === coloresMaquina.length){
         coloresUsuario = [];
         indice = 0;
         hacerTurnoMaquina();
