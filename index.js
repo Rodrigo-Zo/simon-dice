@@ -67,15 +67,10 @@ function elegirColorUsuario(){
     });
 }
 
-function hacerTurnoUsuario(){
-actualizarTurnoDisplay('Te Toca');
-elegirColorUsuario();
-}
-
 function elegirColor(e){
-    let indice = 0;
     let $colorUsuario = e.target;
     pintarColor($colorUsuario);
+    coloresUsuario.push($colorUsuario);
 
     if($colorUsuario.id !== coloresMaquina[coloresUsuario.length - 1].id){
         actualizarTurnoDisplay('Perdiste! toca empezar para jugar nuevamente');
@@ -105,8 +100,4 @@ $botonEmpezar = document.querySelector('#boton-empezar');
 $botonEmpezar.onclick = function(){
     ocultarElemento($botonEmpezar);
     hacerTurnoMaquina();
-
-    setTimeout(function(){
-        hacerTurnoUsuario();
-       },(coloresMaquina.length + 1) * 1000);
 }
