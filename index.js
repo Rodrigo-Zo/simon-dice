@@ -21,7 +21,11 @@ function pintarColor($color){
     
     setTimeout(function() {
         $color.style.opacity = 0.3;
-    }, 1000);
+    }, 500);
+}
+
+
+
 }
 
 function obtenerColorRandom(){
