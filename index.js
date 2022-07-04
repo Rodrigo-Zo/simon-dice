@@ -75,8 +75,10 @@ function elegirColor(e){
 
     else if(coloresUsuario.length === coloresMaquina.length){
         coloresUsuario = [];
-        indice = 0;
-        hacerTurnoMaquina();
+
+        setTimeout(function(){
+            hacerTurnoMaquina();
+        },1000)
     }
 }
 
