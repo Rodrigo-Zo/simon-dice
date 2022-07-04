@@ -1,31 +1,3 @@
-/*
-xAl hacer click en empezar:
-xEn 1 segundo se ocultará el boton empezar.
-xEn 1 segundos comenzará el turnoMaquina.
-
-xturnoMaquina:
-xEn 1 segundo se actualizará nº ronda.
-xEn 1 segundo se actualizará el turno a "Turno Maquina".
-xSe obtendrá un colorRandom
-xcolorRandom se agregara a coloresMaquina[];
-xSe pintaran los coloresMaquina en orden: Nº1: El 1º seg, Nº2: El 2º segundo...
-
-turnoUsuario:
-xEn 1 segundo se actualizará el turno a "Te toca".
-xusuario elegira un colorUsuario
-xcolorUsuario se pintará
-xcolorUsuario se agregara a coloresUsuario[];
-forEach coloresMaquina (color, indice) se verificará si color es igual a coloresUsuario[indice].
-IF es diferente, perder.
-if es igual: ronda++ , coloresUsuario = [], 
-*/
-function actualizarRonda(ronda){
-    document.querySelector('#ronda').textContent = ronda;
-}
-function actualizarTurno(turno){
-    document.querySelector('#turno').textContent = turno;
-}
-
 function ocultarElemento(elemento){
     elemento.className = 'oculto';
 }
@@ -95,11 +67,6 @@ function pintarColor($color){
 }
 
 
-
-
-
-
-
 let ronda = 0;
 let coloresMaquina = [];
 let coloresUsuario = [];
@@ -112,11 +79,3 @@ $botonEmpezar.onclick = function(){
     hacerTurnoJugador();
 }
 
-
-
-
-/*EJEMPLOS DE setTimeout:
-setTimeout(nombreDeFuncion, tiempoDeDelay); //ATENTO, ES CON FUNCION SIN ()!!!
-setTimeout(function(){nombreDeFuncion();}, tiempoDeDelay);
-setTimeout(function() {Accionaejecutar;}, tiempoDeDelay);
-*/
