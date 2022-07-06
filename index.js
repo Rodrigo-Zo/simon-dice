@@ -1,3 +1,11 @@
+function bloquearColoresDisplay(){
+    $colores.forEach(function($color){
+        $color.onclick = function(){
+
+        }
+    });
+}
+
 function ocultarElemento(elemento){
     elemento.className = 'oculto';
 }
@@ -27,6 +35,7 @@ function pintarColor($color){
 
 
 function hacerTurnoMaquina(){
+    bloquearColoresDisplay();
     ronda ++;
     actualizarRondaDisplay(ronda);
     actualizarTurnoDisplay('Turno de la máquina');
@@ -74,6 +83,7 @@ function elegirColor(e){
 
     if($colorUsuario.id !== coloresMaquina[coloresUsuario.length - 1].id){
         actualizarTurnoDisplay('Perdiste! toca empezar para jugar nuevamente');
+        bloquearColoresDisplay();
         ronda = 0;
         coloresMaquina = [];
         coloresUsuario = [];
