@@ -82,12 +82,13 @@ function elegirColor(e){
     coloresUsuario.push($colorUsuario);
 
     if($colorUsuario.id !== coloresMaquina[coloresUsuario.length - 1].id){
+        document.querySelector('#turno-columna').className = 'alert alert-danger';
         actualizarTurnoDisplay('Perdiste! toca empezar para jugar nuevamente');
         bloquearColoresDisplay();
         ronda = 0;
         coloresMaquina = [];
         coloresUsuario = [];
-        desocultarElemento($botonEmpezar);
+        $botonEmpezar.className = 'btn btn-warning';
     }
 
     else if(coloresUsuario.length === coloresMaquina.length){
@@ -108,6 +109,7 @@ let coloresMaquina = [];
 $botonEmpezar = document.querySelector('#boton-empezar');
 
 $botonEmpezar.onclick = function(){
+    document.querySelector('#turno-columna').className = '';
     ocultarElemento($botonEmpezar);
     hacerTurnoMaquina();
 }
